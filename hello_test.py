@@ -1,5 +1,5 @@
 import unittest
-
+import sys
 from hello_app import app
 
 
@@ -9,7 +9,8 @@ class HelloTest(unittest.TestCase):
         self.app = app.test_client()
 
     def test_root(self):
-        assert 'Hello' in self.app.get('/').data
+        converted_string = self.app.get('/').data.decode("utf-8") 
+        assert 'Hello' in converted_string
 
 if __name__ == '__main__':
     unittest.main()
